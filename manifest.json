@@ -1,0 +1,34 @@
+{
+	"manifest_version": 3,
+	"name": "ComSummarizer",
+	"version": "0.1.0",
+	"description": "Summarize and translate visible comments on YouTube and Reddit with Chrome built-in AI APIs.",
+	"permissions": ["storage"],
+	"host_permissions": [
+		"*://*.youtube.com/*",
+		"*://youtube.com/*",
+		"*://*.reddit.com/*",
+		"*://reddit.com/*"
+	],
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.youtube.com/*",
+				"*://youtube.com/*",
+				"*://*.reddit.com/*",
+				"*://reddit.com/*"
+			],
+			"js": [
+				"src/services/chrome-ai.js",
+				"src/sites/index.js",
+				"src/ui/injector.js",
+				"src/content.js"
+			],
+			"css": ["src/injected.css"],
+			"run_at": "document_idle"
+		}
+	],
+	"action": {
+		"default_title": "ComSummarizer"
+	}
+}
